@@ -1,0 +1,5 @@
+'HomePage.java' is a selenium page object exposing elements on a particular page as well as some tests exercising some drag-and-drop and search functionality.
+
+'HomePageTests.java' is the piece that connected the tests to the JSystem framework (with each test returning a pass/fail boolean).  I put in some extra comments here to try and clarify what's happening where.  There was a LOT of extra framework code that helped to glue these 2 pieces together, but I'm leaving that out as most of it was not written by me.  I followed a pattern here as taught by the senior devs who first assembled the framework of which JSystem was a part.
+
+The 'MayanMysteries' code was a proof-of-concept piece to explore using the Sikuli library to automate a Flash-based game.  The code in this file contains helper methods as well as the actual tests.  In the end it worked, but was very fragile and tempermental, with known matches failing occasionally for reasons that were unclear.  We decided not to pursue it further, but it was fun to see how much we could do.  (I say 'we' meaning the company, but the code here is all mine, for better or worse ;)

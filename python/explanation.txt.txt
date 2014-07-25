@@ -1,0 +1,24 @@
+'performanceKeywords.py' is a python class extending the Selenium2Library for Robot Framework.  The purpose of this class was to enable the writing of an informal but thorough performance test.  In this case we were filling out 'diaries' on the android device and recording the time taken between various activities and logging the data in a csv file (Offline_LPA_Diary_Performance_log).
+
+The log file output I provide as an example has been converted to excel format for readability.  Multiple iterations of these statistics were later combined into graphs to show trends as a final report for management.
+
+In the python code, I ended up trying several approaches to filling out the diaries, because the code would fail after~80 diaries or so.  After refining the code (see 'alt' version of SF36 diary code) I was able to get up to 127 diaries, at which point it died with a java memory error from a component of the open source Appium code we were using to interface with the android device.  I contacted the Appium devs as well as the devs of some of the sub-components Appium was using, but was unable to clearly determine the true source of the error.  It was also possible that the application (LPA) itself was at fault with a memory leak of it's own.  Again, the contract ended before I was able to pursue this fully with the devs, but I laid out the case to them as best I could and they were very interested, but busy at the time with an upcoming release.
+
+This code is all very ad-hoc and created under a lot of pressure from my supervisor Christine Sam who in turn was under pressure from senior management to provide some sort of metrics as to how the app was performing.  I enjoyed the coding aspect a great deal, but the pressure to provide results and clarification became a bit much when the memory leak came to light and I no longer felt that I had the proper skill set, coding wise, to determine what it was that was actually happening.  I felt that I needed support from senior devs but this was not encouraged at the time.
+
+Still, it was an exciting project and I had a lot of fun making it all work!
+
+The entry-methods where things begin are as follows:
+
+1.  track_diary_completion_and_offline_submission_times()
+
+2.  generate_diaries_offline_and_track_online_submission_times()
+
+The first was the primary scenario and the one that lead to discovery of the memory leak.  In this scenario we ultimately settled on the largest diary, 'sf36'.  You'll see 2 versions of that 'fill_in_sf36_diary()' and 'fill_in_sf36_diary_alt()'.  The 'alt' version is more 'algorythmic' (in a very simple way) and went much further than the first which took a tradional webdriver approach but which became unstable as the memory leak grew.
+
+The second scenario was supposed to hinge off the first, fill out a bunch of diaries off-line, then go on-line and time how long it took for them to upload to the server and for the app to become usable again.
+
+Webdriver is not the most reliable tool for guaging performance, but it gave us an idea of how things were going.
+
+
+
